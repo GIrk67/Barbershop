@@ -1,12 +1,8 @@
 body {
-
-    min-width: 950px;
-    min-height: 1750px;
-
     margin: 0;
     padding: 0;
 
-    font-family: 'PT Sans Narrow', sans-serif;
+    font-family: 'PT Sans Narrow', 'Arial', sans-serif;
     font-size: 14px;
     font-weight: 700;
     line-height: 24px;
@@ -23,6 +19,27 @@ a {
     text-decoration: none;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.visually-hidden:not(:focus):not(:active),
+input[type="checkbox"].visually-hidden,
+input[type="radio"].visually-hidden {
+    position: absolute;
+
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    clip: rect(0 0 0 0);
+
+    border: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .inner-page {
     color: #000000;
     background-color: #f7f7f7;
@@ -31,9 +48,16 @@ a {
     background-position: 0 0;
 }
 
+.container {
+    width: 940px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
 /*  Кнопки  */
 
 .button {
+    display: inline-block;
     font: inherit;
     text-align: center;
     color: #ffffff;
@@ -41,12 +65,21 @@ a {
     border: none;
     text-transform: uppercase;
     vertical-align: middle;
+    padding: 10px 30px;
+    margin-right: 16px;
 }
 
 .button:hover,
 .button:focus,
 .button:active {
     background-color: #663d15;
+}
+
+.button .disabled,
+.button:disabled {
+    cursor: default;
+    opacity: 0.5;
+    background-color: #000000;
 }
 
 /*  Поля ввода  */
@@ -59,12 +92,6 @@ input {
 
 input:focus {
     border-color: #663d15;
-}
-
-.container {
-    width: 940px;
-    margin: 0 auto;
-    padding: 0 10px;
 }
 
 /*  HEADER  */
@@ -128,9 +155,12 @@ input:focus {
 
 .site-navigation {
     width: 620px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .user-navigation {
+    display: flex;
     width: 140px;
 }
 
@@ -140,7 +170,9 @@ input:focus {
 
 .site-navigation a,
 .user-navigation a {
+    display: block;
     color: #ffffff;
+    padding: 25px 20px;
 }
 
 .site-navigation a:hover,
@@ -149,6 +181,35 @@ input:focus {
 .user-navigation a:focus {
     background-color: #242424;
 }
+
+.user-navigation .login-link {
+    position: relative;
+    padding-left: 50px;
+}
+
+.login-link:before {
+    content: "";
+    position: absolute;
+
+    width: 14px;
+    height: 14px;
+
+    top: 27px;
+    left: 24px;
+    background-image: url(../svg/login.svg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    opacity: 0.3;
+}
+
+.login-link:hover:before,
+.login-link:focus:before,
+.login-link:active:before {
+    opacity: 1;
+}
+
+
+/*  MAIN  */
 
 .features {
     margin-bottom: 80px;
@@ -169,23 +230,47 @@ input:focus {
 }
 
 .feature-item h3 {
+    position: relative;
+    margin: 0;
     font-size: 30px;
     line-height: 42px;
+    margin-bottom: 75px;
+}
+
+.feature-item h3::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 60px;
+    left: 50%;
+    margin-left: -10px;
+
+    background-color: #ffffff;
+    transform: rotate(45deg);
+}
+
+.feature-item p {
+    margin: 0 10px;
 }
 
 .index-columns {
     display: flex;
+    justify-content: space-between;
     padding: 50px 80px;
     color: #000000;
     background-color: #f7f7f7;
-    background-image: url(../img/light-bg.jpg);
-    background-repeat: repeat;
-    background-position: 0 0;
+    background-image: url(../img/line.png),
+        url(../img/light-bg.jpg);
+    background-repeat: no-repeat, repeat;
+    background-position: center, 0 0;
 
     margin-bottom: 40px;
 }
 
 .index-columns h2 {
+    margin: 0;
+    margin-bottom: 25px;
     font-size: 30px;
     line-height: 42px;
 }
@@ -195,7 +280,18 @@ input:focus {
 }
 
 .news-list {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 25px;
     list-style: none;
+}
+
+.news-item {
+    margin-bottom: 25px;
+}
+
+.news-item p {
+    margin: 0;
 }
 
 .news-item time {
@@ -206,17 +302,86 @@ input:focus {
     width: 300px;
 }
 
+.galery-container {
+    position: relative;
+    height: 260px;
+}
+
 .gallary-content {
-    background-color: #ffffff;
-    border: 7px solid #000000;
+    height: 164px;
+    margin: 0;
+    background-color: #cccccc;
+    border: 7px solid #ffffff;
+}
+
+.gallary-content img {
+    width: 286px;
+    height: 164px;
+}
+
+.button-gallery {
+    box-sizing: border-box;
+    position: absolute;
+    width: 140px;
+    margin: 0;
+    bottom: 0;
+}
+
+.button-gallery-back {
+    left: 0;
+}
+
+.button-gallery-next {
+    right: 0;
 }
 
 .contacts {
     width: 380px;
 }
 
+.contacts p {
+    margin: 0;
+    margin-bottom: 25px;
+}
+
 .appointment {
-    width: 380px;
+    width: 300px;
+}
+
+.appointment-info {
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.appointment-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.appointment-item {
+    width: 140px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.appointment-item label {
+    display: block;
+    margin-bottom: 9px;
+    margin-left: 15px;
+}
+
+.appointment-item input {
+    box-sizing: border-box;
+    width: 140px;
+    padding: 8px 15px 7px;
+}
+
+.appointment button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-right: 0;
 }
 
 /* Общие стили для других страниц  */
@@ -369,6 +534,14 @@ input:focus {
 
 /*  Стили карточки товара  */
 
+.product-photos {
+    width: 460px;
+}
+
+.product-info {
+    width: 390px;
+}
+
 .product-photo-full {
     box-shadow: 0px 0px 15px 0px rgba(0, 1, 1, 0.2);
 }
@@ -442,12 +615,43 @@ input:focus {
     text-align: center;
 }
 
+.footer-social b {
+    display: block;
+    margin-bottom: 15px;
+}
+
 .social-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 141px;
+    margin: 0 auto;
+    padding: 0;
     list-style: none;
 }
 
 .social-item {
-    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    width: 43px;
+    height: 43px;
+}
+
+.social-item:hover,
+.social-item:focus {
+    background-color: #ffffff;
+}
+
+.social-item:hover path,
+.social-item:focus path {
+    fill: #000000;
+}
+
+.footer-copyright b {
+    display: block;
+    margin-bottom: 15px;
 }
 
 .footer-copyright {
@@ -460,6 +664,11 @@ input:focus {
 .button-copyright {
     background-color: #000000;
     color: #ffffff;
+}
+
+.button-copyright {
+    display: block;
+    margin-right: 0;
 }
 
 .button-copyright:hover,
